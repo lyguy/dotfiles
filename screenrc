@@ -1,0 +1,17 @@
+startup_message off
+shell -$SHELL
+
+# Look and feel
+#caption always "%{= bb}%{+b w}Screen: %n | %h %=%t %c"
+caption always "%{=b dy}{ %{= dm}${USER} %{=b dy}}%={ %?%{= dc}%-Lw%?%{+b dy}(%{-b r}%n:%t%{+b dy})%?(%u)%?%{-dc}%?%{= dc}%+Lw%? %{=b dy}}"
+
+#hardstatus alwayslastline "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<"
+
+# Our warning of activity
+activity "Activity in %t(%n)"
+
+# Make xterm scrolling work properly with screen.
+termcapinfo xterm-color|xterm|xterms|xs|rxvt ti@:te@
+
+#set escape char to 'z'
+escape ^Zz
