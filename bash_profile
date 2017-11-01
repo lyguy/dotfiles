@@ -1,16 +1,37 @@
-# Enable Bash Completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
+# Helper var
+brew_dir=$(brew --prefix)
+
+# Enable ash Completion
+if [ -f ${brew_dir}/etc/bash_completion ]; then
+    . ${brew_dir}/etc/bash_completion
 fi
 
 alias e='emacsclient -t'
 alias ec='emacsclient -c'
 
 #Disable Homebrew analytics
-HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_ANALYTICS=1
 
 # Source OPAM
-. $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+if [ -f $HOME/.opam/opam-init/init.sh ]; then
+  source $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+  eval `opam config env`
+fi
+ # Add Cargo path
+if [ -d "$HOME/.cargo/bin/" ]; then
+   export PATH=$HOME/.cargo/bin:$PATH
+fi
+
+# Put Brew's Python2 on the path
+if [ -d ${brew_dir}/opt/python/libexec/bin ]; then
+  export PATH="${brew_dir}/opt/python/libexec/bin:$PATH"
+fi
+
+# Use homebrew's virtualenvwrapper
+if [ -f ${brew_dir}/bin/virtualenvwrapper.sh ]; then
+  export WORKON_HOME="${HOME}/py_venvs"
+  source ${brew_dir}/bin/virtualenvwrapper.sh
+fi
 
 # Activate thefuck
 eval $(thefuck -a)
