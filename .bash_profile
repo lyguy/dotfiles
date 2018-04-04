@@ -1,3 +1,24 @@
+#!/bin/bash
+
+# Load the shell dot-files
+for file in [~/.bashrc]; do
+    if [[ -r "$file" ]] && [[ -f "$file" ]]; then
+        source "$file"
+    fi
+done
+unset file
+
+# Case-insensitive globbing (used in pathname expansion)
+shopt -s nocaseglob
+
+# Append to the Bash history file, rather than overwriting it
+shopt -s histappend
+
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell
+
+
 # Homwbrew root directory helper var
 brew_dir=$(brew --prefix)
 
@@ -43,39 +64,3 @@ fi
 # Activate thefuck
 eval "$(thefuck -a)"
 
-# Change the window title of X terminals
-case ${TERM} in
-        xterm*|rxvt*|Eterm|aterm|kterm|gnome*|interix)
-                PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
-                use_color=true
-                ;;
-        screen)
-                PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\033\\"'
-                use_color=true
-                ;;
-esac
-
-if ${use_color} ; then
-        # set color prompt
-        if [[ ${EUID} == 0 ]] ; then
-                PS1='\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
-        else
-                PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \W \$\[\033[00m\] '
-        fi
-
-        # enable ls colors
-        alias ls='ls -G'
-        # enable grep color
-        #alias grep='grep -â€“color=auto'
-else
-        if [[ ${EUID} == 0 ]] ; then
-                # show root@ when we donâ€™t have colors
-                PS1='\u@\h \W \$ '
-        else
-                PS1='\u@\h \W \$ '
-        fi
-fi
-
-# Try to keep environment pollution down
-unset use_color
-# End color settings
