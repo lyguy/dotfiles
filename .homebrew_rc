@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Homebrew root directory helper var
+brew_dir=$(brew --prefix)
+
+#Disable Homebrew analytics
+export HOMEBREW_NO_ANALYTICS=1
+
+# Enable bash Completion
+if [ -f "${brew_dir}/etc/bash_completion" ]; then
+    source "${brew_dir}/etc/bash_completion"
+fi
+
+# Put Brew's Python2 on the path if it's installed
+if [ -d "${brew_dir}/opt/python@2/libexec/bin" ]; then
+    export PATH="${brew_dir}/opt/python/libexec/bin:$PATH"
+fi
+
+## Use homebrew's virtualenvwrapper
+if [ -f "${brew_dir}/bin/virtualenvwrapper.sh" ]; then
+    export WORKON_HOME="${HOME}/py_venvs"
+    source "${brew_dir}/bin/virtualenvwrapper.sh"
+fi
+
+## Use janky local dir on Darwin
+if [ "$(uname)" == "Darwin" ]; then
+    export PYTHONUSERBASE="${HOME}/local"
+    export PATH="${HOME}/local/bin:$PATH"
+fi

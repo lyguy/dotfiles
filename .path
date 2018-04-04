@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Set up OPAM
+if [ -f "$HOME/.opam/opam-init/init.sh" ]; then
+    #shellcheck source=/dev/null
+    source "$HOME/.opam/opam-init/init.sh" > /dev/null 2> /dev/null || true
+    eval "$(opam config env)"
+fi
+
+# Rust cargo bins
+if [ -d "$HOME/.cargo/bin/" ]; then
+    export PATH=$HOME/.cargo/bin:$PATH
+fi
