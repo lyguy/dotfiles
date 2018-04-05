@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# add .local/bin to path
+if [ -d "$HOME/.local/bin" ]; then
+    export PATH=$HOME/.local/bin:$PATH
+fi
+
 # Set up OPAM
 if [ -f "$HOME/.opam/opam-init/init.sh" ]; then
     #shellcheck source=/dev/null

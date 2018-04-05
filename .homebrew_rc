@@ -8,6 +8,7 @@ export HOMEBREW_NO_ANALYTICS=1
 
 # Enable bash Completion
 if [ -f "${brew_dir}/etc/bash_completion" ]; then
+    #shellcheck source=/dev/null
     source "${brew_dir}/etc/bash_completion"
 fi
 
@@ -19,6 +20,7 @@ fi
 ## Use homebrew's virtualenvwrapper
 if [ -f "${brew_dir}/bin/virtualenvwrapper.sh" ]; then
     export WORKON_HOME="${HOME}/py_venvs"
+    #shellcheck source=/dev/null
     source "${brew_dir}/bin/virtualenvwrapper.sh"
 fi
 
