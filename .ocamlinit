@@ -3,6 +3,7 @@
 #camlp4o;;
 #require "core.top";;
 #require "core.syntax";;
+#ppx "ppx-jane -as-ppx"
 (* open Core.Std *)
 
 (* Added by OPAM. *)
