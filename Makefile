@@ -7,7 +7,9 @@ dotfiles: # Installs the dotfiles
 	for file in $(shell find $(CURDIR) -name ".*" -not -name ".gitignore" -not -name ".git" -not -name ".gnupg" -not -name ".#*" -not -name ".*.swp"); do \
 		f=$$(basename $$file); \
 		ln -sfn $$file $(HOME)/$$f; \
-	done;
+	done; \
+  gpg --list-keys || true; \
+  ln -sfn $(CURDIR)/.gnupg/gpg.conf $(HOME)/.gnupg/gpg.conf;
 
 .PHONY: test
 test: shellcheck ## Runs all the tests on the file in the repo
