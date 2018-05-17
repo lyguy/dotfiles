@@ -15,4 +15,6 @@ fi
 # Rust cargo bins
 if [ -d "$HOME/.cargo/bin/" ]; then
     export PATH=$HOME/.cargo/bin:$PATH
+    RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+    export RUST_SRC_PATH
 fi
