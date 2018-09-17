@@ -18,3 +18,12 @@ if [ -d "$HOME/.cargo/bin/" ]; then
     RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
     export RUST_SRC_PATH
 fi
+
+# Go
+if [ -d "${HOME}/.go" ]; then
+    export GOPATH="${HOME}/.go"
+    export PATH="/usr/local/go/bin:${GOPATH}/bin:${PATH}"
+fi
+
+
+

@@ -62,6 +62,7 @@ values."
      elixir
      emacs-lisp
      erlang
+     go
      haskell
      html
      javascript
