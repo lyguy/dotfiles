@@ -24,6 +24,13 @@ if [ -f "${brew_dir}/bin/virtualenvwrapper.sh" ]; then
     source "${brew_dir}/bin/virtualenvwrapper.sh"
 fi
 
+
+## Put brew's Qt on the path, if it's installed
+
+if [ -d "${brew_dir}/opt/qt/bin" ]; then
+    export PATH="${brew_dir}/opt/qt/bin:$PATH"
+fi
+
 ## Use janky local dir on Darwin
 if [ "$(uname)" == "Darwin" ]; then
     export PYTHONUSERBASE="${HOME}/local"
