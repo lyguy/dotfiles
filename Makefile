@@ -10,6 +10,7 @@ dotfiles: # Installs the dotfiles
 	done; \
   gpg --list-keys || true; \
   ln -sfn $(CURDIR)/.gnupg/gpg.conf $(HOME)/.gnupg/gpg.conf;
+	ln -snf $(CURDIR)/.gnupg/gpg-agent.conf $(HOME)/.gnupg/gpg-agent.conf;
 
 .PHONY: test
 test: shellcheck ## Runs all the tests on the file in the repo
