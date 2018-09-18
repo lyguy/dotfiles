@@ -33,6 +33,5 @@ fi
 
 ## Use janky local dir on Darwin
 if [ "$(uname)" == "Darwin" ]; then
-    export PYTHONUSERBASE="${HOME}/local"
-    export PATH="${HOME}/local/bin:$PATH"
+    export PYTHONUSERBASE="${HOME}/.local"
 fi
