@@ -24,3 +24,10 @@ if [ -d "${HOME}/.go" ]; then
     export GOPATH="${HOME}/.go"
     export PATH="/usr/local/go/bin:${GOPATH}/bin:${PATH}"
 fi
+
+# RVM
+file="${HOME}/.rvm/scripts/rvm"
+if [[ -f "${file}" ]] && [[ -r "${file}" ]]; then
+    #shellcheck source=/dev/null
+    source "${file}"
+fi
