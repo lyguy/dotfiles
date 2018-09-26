@@ -18,4 +18,4 @@
         newlines = !git ls-files -z | xargs -0 -L1 bash -c 'test "$(tail -c 1 "$0")" && echo "No new line at end of $0"'
 
 [include]
-path = "${HOME}.gitconfig.local"
+path = "~/.gitconfig.local"
