@@ -337,8 +337,17 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code"
+
+  ;; use hunspell for spelling
   (setq ispell-program-name "hunspell")
-  (setq explicit-bash-args '("--noediting" "--login" "-i")))
+
+  ;; make terminals work the way they should in gui mode on osx
+  (setq explicit-bash-args '("--noediting" "--login" "-i"))
+
+  ;; Config neotree
+  (setq neo-theme 'arrow)
+  (setq neo-vc-integration '(face))
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
