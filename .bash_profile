@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Load the shell dot-files
-if [[ -r ".bashrc" ]] && [[ -f ".bashrc" ]]; then
+if [[ -r "${HOME}/.bashrc" ]] && [[ -f "${HOME}/.bashrc" ]]; then
     #shellcheck source=/dev/null
-    source .bashrc
+    source "${HOME}/.bashrc"
 fi
 
 # If we're on macos handle homebrew
