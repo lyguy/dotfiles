@@ -31,3 +31,19 @@ if [[ -f "${file}" ]] && [[ -r "${file}" ]]; then
     #shellcheck source=/dev/null
     source "${file}"
 fi
+
+
+# Google Cloud
+# The next line updates PATH for the Google Cloud SDK.
+file="${HOME}/google-cloud-sdk/path.bash.inc"
+if [ -f "${file}" ]; then
+    #shellcheck source=/dev/null
+    source "${file}"
+fi
+
+# The next line enables shell command completion for gcloud.
+file="${HOME}/google-cloud-sdk/completion.bash.inc"
+if [ -f "${file}" ]; then
+    #shellcheck source=/dev/null
+    source "${file}"
+fi
