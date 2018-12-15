@@ -56,6 +56,9 @@ values."
      (syntax-checking :variables syntax-checking-enable-by-default t)
      gtags
 
+     ;; Applications
+     org
+
      ;; Languages
      asm
      bibtex
@@ -73,7 +76,6 @@ values."
      latex
      markdown
      ocaml
-     org
      python
      ruby
      rust
