@@ -353,6 +353,9 @@ you should place your code"
   ;; Config neotree
   (setq neo-theme 'arrow)
   (setq neo-vc-integration '(face))
+
+  ;; Org mode
+  (setq org-pretty-entities t)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
