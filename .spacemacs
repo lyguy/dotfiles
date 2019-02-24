@@ -72,7 +72,7 @@ values."
      go
      haskell
      html
-     javascript
+     (javascript :variables js2-basic-offset 2)
      latex
      markdown
      ocaml
@@ -151,7 +151,8 @@ values."
    ;; `recents' `bookmarks' `projects' `agenda' `todos'."
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
-   dotspacemacs-startup-lists '((recents . 5)
+   dotspacemacs-startup-lists '((todos . 5)
+                                (recents . 5)
                                 (projects . 7))
    ;; True if the home buffer should respond to resize events.
    dotspacemacs-startup-buffer-responsive t
@@ -295,14 +296,15 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers  '(:relative nil
-     :disabled-for-modes dired-mode
-                         doc-view-mode
-                         markdown-mode
-                         org-mode
-                         pdf-view-mode
-                         text-mode
-     :size-limit-kb 1000)
+   ;; dotspacemacs-line-numbers  '(:relative nil
+   ;;   :disabled-for-modes dired-mode
+   ;;                       doc-view-mode
+   ;;                       markdown-mode
+   ;;                       org-mode
+   ;;                       pdf-view-mode
+   ;;                       text-mode
+   ;;   :size-limit-kb 1000)
+   dotspacemacs-line-numbers  nil
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
