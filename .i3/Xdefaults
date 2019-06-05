@@ -29,7 +29,6 @@ xscreensaver.passwd.thermometer.width:       8
 xscreensaver.dateFormat:    %I:%M%P %a %b %d, %Y
 
 !-Xft settings-!
-Xft.dpi:       220
 Xft.antialias: true
 Xft.rgba:      rgb
 Xft.hintstyle: hintfull
