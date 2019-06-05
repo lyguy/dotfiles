@@ -174,4 +174,4 @@ bar {
 
 exec emacs --daemon
 exec xrdb -merge $HOME/.Xdefaults
-exec compton
+exec compton -c
