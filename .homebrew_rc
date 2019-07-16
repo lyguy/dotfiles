@@ -12,6 +12,10 @@ if [ -f "${brew_dir}/etc/bash_completion" ]; then
     source "${brew_dir}/etc/bash_completion"
 fi
 
+if [ -d "${brew_dir}/sbin" ]; then
+    export PATH="${brew_dir}/sbin:${PATH}"
+fi
+
 # Put Brew's Python2 on the path if it's installed
 if [ -d "${brew_dir}/opt/python@2/libexec/bin" ]; then
     export PATH="${brew_dir}/opt/python/libexec/bin:$PATH"
