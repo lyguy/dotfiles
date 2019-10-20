@@ -25,6 +25,16 @@ if [ -d "${HOME}/go" ]; then
     export PATH="/usr/local/go/bin:${GOPATH}/bin:${PATH}"
 fi
 
+#Perl 5
+if [ -d "${HOME}/perl5" ]; then
+    perl_path="${HOME}/perl5"
+    export PATH="${perl_path}/bin${PATH:+:${PATH}}"
+    export PERL5LIB="${perl_path}/lib/perl5${PERL5LIB:+:${PERL5LIB}}"
+    export PERL_LOCAL_LIB_ROOT="${perl_path}${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"
+    export PERL_MB_OPT="--install_base \"${perl_path}\""
+    export PERL_MM_OPT="INSTALL_BASE=${perl_path}"
+fi
+
 
 # Google Cloud
 # The next line updates PATH for the Google Cloud SDK.
