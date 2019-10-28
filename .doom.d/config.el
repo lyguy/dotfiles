@@ -1,6 +1,10 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here
+;;
+(when (memq window-system '(mac ns x))
+  (setq exec-path-from-shell-check-startup-files nil)
+  (exec-path-from-shell-initialize))
 
 (setq deft-recursive t)
 
@@ -19,11 +23,8 @@
        (mapcar(lambda (bib) (concat research-path bib)) bibliographies))
 (setq bibtex-completion-notes-path (concat research-path "notes"))
 
-
 (when (memq window-system '((message "")ac ns))
   (setq exec-path-from-shell-check-startup-files nil)
   (exec-path-from-shell-initialize))
 
 (setq doom-theme 'doom-solarized-light)
-
-(setq doom-font (font-spec :family "Menlo" :size 13))
