@@ -9,7 +9,7 @@
 (setq deft-recursive t)
 
 ;; BibTex Setup
-;; The gist is: I use Zotero wit hbetter bibtex to manage the bibtex db,
+;; The gist is: I use Zotero with better bibtex to manage the bibtex db,
 ;; and files. All of the db management is left to Zotero, excpet notes,
 ;; which we keep in the orgs.
 (defvar bibliographies (list "Online_Pajak.bib" "Math Books.bib"))
