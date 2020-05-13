@@ -37,3 +37,6 @@ function Orgify () {
 
 }
 alias orgify=Orgify
+
+alias ytdl-pl="youtube-dl -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
+alias ytdl-pl-x="youtube-dl -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' -x"
