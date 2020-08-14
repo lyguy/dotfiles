@@ -6,6 +6,12 @@
   (setq exec-path-from-shell-check-startup-files nil)
   (exec-path-from-shell-initialize))
 
+
+(when (memq window-system '((message "")ac ns))
+  (setq exec-path-from-shell-check-startup-files nil)
+  (exec-path-from-shell-initialize))
+
+
 (setq deft-recursive t)
 
 ;; BibTex Setup
