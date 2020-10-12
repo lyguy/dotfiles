@@ -39,3 +39,8 @@ fi
 if [ "$(uname)" == "Darwin" ]; then
     export PYTHONUSERBASE="${HOME}/.local"
 fi
+
+## Set Liquibase Path
+if [ -d "/usr/local/opt/liquibase/libexec" ]; then
+    export LIQUIBASE_HOME="/usr/local/opt/liquibase/libexec"
+fi

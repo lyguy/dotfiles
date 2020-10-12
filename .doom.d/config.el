@@ -29,8 +29,7 @@
        (mapcar(lambda (bib) (concat research-path bib)) bibliographies))
 (setq bibtex-completion-notes-path (concat research-path "notes"))
 
-(when (memq window-system '((message "")ac ns))
   (setq exec-path-from-shell-check-startup-files nil)
-  (exec-path-from-shell-initialize))
+  (exec-path-from-shell-initialize)
 
 (setq doom-theme 'doom-solarized-light)

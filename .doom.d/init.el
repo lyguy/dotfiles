@@ -202,7 +202,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("7d56fb712ad356e2dacb43af7ec255c761a590e1182fe0537e1ec824b7897357" default))))
+    ("f30aded97e67a487d30f38a1ac48eddb49fdb06ac01ebeaff39439997cbdd869" "f2b83b9388b1a57f6286153130ee704243870d40ae9ec931d0a1798a5a916e76" "0713580a6845e8075113a70275b3421333cfe7079e48228c52300606fa5ce73b" "7d56fb712ad356e2dacb43af7ec255c761a590e1182fe0537e1ec824b7897357" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -19,6 +19,17 @@
 
 [user]
 	signingkey = E824EFB68FCABC20
+	name = Lyman B. Gillispie
+	email = lyman.gillispie@online-pajak.com
 
 [include]
 path = "~/.gitconfig.local"
+[gitlab "git.achilles.systemsapi/api/v4"]
+	user = lyman.gillispie
+[gitlab "git.achilles.systems/api/v4"]
+	user = lyman.gillispie
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
