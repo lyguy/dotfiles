@@ -29,13 +29,5 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 
 
-## automatically  b
-##if [ "$(uname)" == "Darwin" ]; then
-##
-function Orgify () {
-    curl -sS "$1" | pandoc -f html -t org | pbcopy
-
-}
-alias orgify=Orgify
-
 alias ytdl-pl-x="youtube-dl -f m4a/bestaudio -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' -x"
+alias ytdl-pl="youtube-dl -f m4a/bestaudio -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"

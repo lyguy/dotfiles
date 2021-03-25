@@ -48,12 +48,6 @@ if [[ -f "${file}" ]] && [[ -r "${file}" ]]; then
     source "${file}"
 fi
 
-# PHP :(
-dir="${HOME}/.composer/vendor/bin"
-if [ -d "${dir}" ]; then
-    export PATH="${dir}:${PATH}"
-fi
-
 # PG 11
 dir="/usr/local/opt/postgresql@11/bin"
 if [ -d "${dir}" ]; then
@@ -70,21 +64,9 @@ if [ -d "${dir}" ]; then
     [ -s "${dir}/etc/bash_completion.d/nvm" ] && source "${dir}/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 fi
 
-# Conda
-conda_home="${HOME}/anaconda3"
-if [ -d "${conda_home}" ]; then
-    if __conda_setup=$("${conda_home}/bin/conda" 'shell.bash' 'hook' 2> /dev/null); then
-        eval "$__conda_setup"
-    else
-        if [ -f "${conda_home}/etc/profile.d/conda.sh" ]; then
-            #shellcheck source=/dev/null
-            source "${conda_home}/etc/profile.d/conda.sh"
-        else
-            export PATH="${conda_home}/bin:$PATH"
-        fi
-    fi
-    if [[ -n $TMUX ]]; then
-        conda deactivate; conda activate base
-    fi
-unset __conda_setup
+# Emacs
+dir="${HOME}/.emacs.d/bin"
+if [[ -d "${dir}" ]]; then
+    export PATH="${dir}:${PATH}"
 fi
+
