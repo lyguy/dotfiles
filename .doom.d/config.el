@@ -19,8 +19,8 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
-;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+;; (setq doom-font (font-spec :family "monospace" :size 16 :weight 'semi-light)
+;;     doom-variable-pitch-font (font-spec :family "sans" :size 15))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -42,32 +42,66 @@
 ;; The gist is: I use Zotero with better bibtex to manage the bibtex db,
 ;; and files. All of the db management is left to Zotero, excpet notes,
 ;; which we keep in the orgs.
-; (defvar bibliographies (list "Online_Pajak.bib" "Math Books.bib"))
-; (defvar research-path "~/org/research/")
-; 
-; (setq bibtex-completion-additional-search-fields '(tags keywords))
-; (setq bibtex-completion-pdf-field "File")
-; ;; BibTex settings to help coordinate w/ Zotero
-; ;; Optionally specifying a location for the corresponding PDFs
-; (setq  bibtex-completion-bibliography
-;        (mapcar(lambda (bib) (concat research-path bib)) bibliographies))
-; (setq bibtex-completion-notes-path (concat research-path "notes"))
+                                        ; (defvar bibliographies (list "Online_Pajak.bib" "Math Books.bib"))
+                                        ; (defvar research-path "~/org/research/")
+                                        ;
+                                        ; (setq bibtex-completion-additional-search-fields '(tags keywords))
+                                        ; (setq bibtex-completion-pdf-field "File")
+                                        ; ;; BibTex settings to help coordinate w/ Zotero
+                                        ; ;; Optionally specifying a location for the corresponding PDFs
+                                        ; (setq  bibtex-completion-bibliography
+                                        ;        (mapcar(lambda (bib) (concat research-path bib)) bibliographies))
+                                        ; (setq bibtex-completion-notes-path (concat research-path "notes"))
 
 (setq auto-save-visited-mode t)
 (auto-save-visited-mode +1)
 
 
 ;; org-roam templates
+
+
+
 (after!
   org-roam
-  (push
-   '("e" "contact" plain (function org-roam--capture-get-point)
-     "* Name: ${name}%?"
-     :file-name "contacts/${slug}"
-     :head "#+title: ${title}\n#+property: name ${name}\n#+property: nickname ${nickname}\n#+property: company ${company}\n#+property: team ${team}\n#+property: email ${email}\n#+property: phone ${phone}"
-     :unnarrowed t)
-   org-roam-capture-templates
-   ))
+  (setq org-roam-capture-templates
+        '(("d" "default" plain (function org-roam--capture-get-point)
+           "%?"
+           :file-name "%<%Y%m%d%H%M%S>-${slug}"
+           :head "#+title: ${title}\n"
+           :unnarrowed t)
+          ("c" "contact" plain (function org-roam--capture-get-point)
+           "* ${title}
+ :PROPERTIES:
+ :EMAIL: ${email}
+ :PHONE: ${phone}
+ :ALIAS: ${nickname}
+ :ADDRESS: ${address}
+ :PHONE: ${phone}
+ :roam_alias: ${nickname}
+ :END:
+"
+           :file-name "contacts/${slug}"
+           :head "#+title: ${title}\n"
+           :unnarrowed t)
+          ("m" "meeting" plain (function org-roam--capture-get-point)
+           "* %<%A, %d %B %Y %H:%M> - ${title}\n** Attendees:\n  - \n** Notes\n%?"
+           :file-name "meetings/%<%Y%m%d%H%M%S>-${slug}"
+           :head "#+title: %<%Y-%m-%d %H:%M> - ${title}\n#+date: %<%Y-%m-%d %H:%M>\n"
+          :unnarrowed t ))))
+
+
+
+(use-package! org-contacts
+  ;; if you omit :defer, :hook, :commands, or :after, then the package is loaded
+  ;; immediately. By using :hook here, the `hl-todo` package won't be loaded
+  ;; until prog-mode-hook is triggered (by activating a major mode derived from
+  ;; it, e.g. python-mode)
+  :after org
+  :init
+  ;; code here will run immediately
+  :config
+  ;; code here will run after the package is loaded
+  (setq org-contacts-files (directory-files-recursively (expand-file-name "~/org/roam/contacts")  "^[^\.][^#].+\.org$")))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
