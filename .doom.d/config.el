@@ -51,7 +51,23 @@
                                         ; ;; Optionally specifying a location for the corresponding PDFs
                                         ; (setq  bibtex-completion-bibliography
                                         ;        (mapcar(lambda (bib) (concat research-path bib)) bibliographies))
-                                        ; (setq bibtex-completion-notes-path (concat research-path "notes"))
+  `                                      ; (setq bibtex-completion-notes-path (concat research-path "notes"))
+
+
+(defvar bibliogtaphy-path (list "~/org/bibtex/my-library.bib"))
+(setq bibtex-completion-bibliography  bibliogtaphy-path)
+
+(use-package! org-ref
+  :after org-mode
+  :config
+  (setq org-ref-default-bibliography bibliogtaphy-path))
+
+(use-package! org-roam-bibtex
+  :after org-roam
+  :hook (org-roam-mode . org-roam-bibtex-mode)
+  :config
+  (require 'org-ref))
+
 
 (setq auto-save-visited-mode t)
 (auto-save-visited-mode +1)
@@ -87,7 +103,7 @@
            "* %<%A, %d %B %Y %H:%M> - ${title}\n** Attendees:\n  - \n** Notes\n%?"
            :file-name "meetings/%<%Y%m%d%H%M%S>-${slug}"
            :head "#+title: %<%Y-%m-%d %H:%M> - ${title}\n#+date: %<%Y-%m-%d %H:%M>\n"
-          :unnarrowed t ))))
+           :unnarrowed t ))))
 
 
 
@@ -102,6 +118,7 @@
   :config
   ;; code here will run after the package is loaded
   (setq org-contacts-files (directory-files-recursively (expand-file-name "~/org/roam/contacts")  "^[^\.][^#].+\.org$")))
+
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
