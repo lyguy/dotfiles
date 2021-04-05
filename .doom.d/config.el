@@ -19,8 +19,9 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
+(setq doom-variable-pitch-font "New York Medium-15")
 ;; (setq doom-font (font-spec :family "monospace" :size 16 :weight 'semi-light)
-;;     doom-variable-pitch-font (font-spec :family "sans" :size 15))
+;;     doom-variable-pitch-font (font-spec :family "New York" :weight 'medium :size 15))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -51,22 +52,27 @@
                                         ; ;; Optionally specifying a location for the corresponding PDFs
                                         ; (setq  bibtex-completion-bibliography
                                         ;        (mapcar(lambda (bib) (concat research-path bib)) bibliographies))
-  `                                      ; (setq bibtex-completion-notes-path (concat research-path "notes"))
+                                        ; (setq bibtex-completion-notes-path (concat research-path "notes"))
 
 
-(defvar bibliogtaphy-path (list "~/org/bibtex/my-library.bib"))
-(setq bibtex-completion-bibliography  bibliogtaphy-path)
+(setq bibtex-completion-bibliography  "/Users/lygi/org/bibtex/my-library.bib")
 
-(use-package! org-ref
-  :after org-mode
-  :config
-  (setq org-ref-default-bibliography bibliogtaphy-path))
+  (use-package! org-ref
+    :after org-mode
+    :config
+    (setq reftex-default-bibliography "/Users/lygi/org/bibtex/my-library.bib")
+    (setq org-ref-default-bibliography "/Users/lygi/org/bibtex/my-library.bib"))
 
 (use-package! org-roam-bibtex
   :after org-roam
   :hook (org-roam-mode . org-roam-bibtex-mode)
   :config
   (require 'org-ref))
+
+(use-package! org-preview-html-mode
+  :after org-mode)
+
+(add-hook! org-mode  +org-pretty-mode)
 
 
 (setq auto-save-visited-mode t)
@@ -75,15 +81,13 @@
 
 ;; org-roam templates
 
-
-
 (after!
   org-roam
   (setq org-roam-capture-templates
         '(("d" "default" plain (function org-roam--capture-get-point)
            "%?"
            :file-name "%<%Y%m%d%H%M%S>-${slug}"
-           :head "#+title: ${title}\n"
+           :head "#+title: ${title}\n* ${title}\n%?"
            :unnarrowed t)
           ("c" "contact" plain (function org-roam--capture-get-point)
            "* ${title}
@@ -103,8 +107,53 @@
            "* %<%A, %d %B %Y %H:%M> - ${title}\n** Attendees:\n  - \n** Notes\n%?"
            :file-name "meetings/%<%Y%m%d%H%M%S>-${slug}"
            :head "#+title: %<%Y-%m-%d %H:%M> - ${title}\n#+date: %<%Y-%m-%d %H:%M>\n"
-           :unnarrowed t ))))
+           :unnarrowed t )
+          ("f" "film" plain (function org-roam--capture-get-point)
+           :file-name "media/movies/%<%Y%m%d%H%M%S>-${slug}"
+           :head "#+title: ${title} (${year})
+* [[${wikipedia-page}][${title} (${year})]]
+:PROPERTIES:
+:CATEGORY: Film
+:END:
+Year: ${year}
+** Notes:
+%?
+"
+           :unnarrowed t)
+          ("b" "book" plain  (function org-roam--capture-get-point)
+           :file-name "media/books/%<%Y%m%d%H%M%S>-${slug}"
+           :head"* ${title}
+:PROPERTIES:
+:CATEGORY: Book
+:END:
+- Author: [[roam:${author}]]
+- Year: ${year}
+- Date finished:
+** Notes:
+%?
+" ))))
 
+(use-package! org-roam-server
+  :ensure t
+  :config
+  (setq org-roam-server-host "127.0.0.1"
+        org-roam-server-port 8080
+        org-roam-server-authenticate nil
+        org-roam-server-export-inline-images t
+        org-roam-server-serve-files nil
+        org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
+        org-roam-server-network-poll t
+        org-roam-server-network-arrows nil
+        org-roam-server-network-label-truncate t
+        org-roam-server-network-label-truncate-length 60
+        org-roam-server-network-label-wrap-length 20))
+
+(defun org-roam-server-open ()
+    "Ensure the server is active, then open the roam graph."
+    (interactive)
+    (smartparens-global-mode -1)
+    (org-roam-server-mode 1)
+    (smartparens-global-mode 1))
 
 
 (use-package! org-contacts
@@ -118,6 +167,13 @@
   :config
   ;; code here will run after the package is loaded
   (setq org-contacts-files (directory-files-recursively (expand-file-name "~/org/roam/contacts")  "^[^\.][^#].+\.org$")))
+
+(use-package! git-auto-commit-mode
+  :config
+  (setq gac-silent-message-p t)
+  (setq gac-debounce-interval 10))
+
+
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:

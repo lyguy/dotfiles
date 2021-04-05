@@ -10,6 +10,9 @@
 ;(package! some-package)
 (package! org-ref)
 (package! org-roam-bibtex)
+(package! git-auto-commit-mode)
+(package! org-roam-server)
+(package! org-preview-html)
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
 ;; https://github.com/raxod502/straight.el#the-recipe-format
