@@ -87,7 +87,7 @@
         '(("d" "default" plain (function org-roam--capture-get-point)
            "%?"
            :file-name "%<%Y%m%d%H%M%S>-${slug}"
-           :head "#+title: ${title}\n* ${title}\n%?"
+           :head "#+title: ${title}\n* ${title}\n#+STARTUP: latexpreview\n "
            :unnarrowed t)
           ("c" "contact" plain (function org-roam--capture-get-point)
            "* ${title}
