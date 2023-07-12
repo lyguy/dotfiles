@@ -2,39 +2,34 @@
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Homebrew root directory helper var
-brew_dir=$(brew --prefix)
-
 #Disable Homebrew analytics
 export HOMEBREW_NO_ANALYTICS=1
 
 # Enable bash Completion
-if [ -f "${brew_dir}/etc/bash_completion" ]; then
+if [ -f "${HOMEBREW_PREFIX}/etc/bash_completion" ]; then
     #shellcheck source=/dev/null
-    source "${brew_dir}/etc/bash_completion"
+    source "${HOMEBREW_PREFIX}/etc/bash_completion"
 fi
 
-if [ -d "${brew_dir}/sbin" ]; then
-    export PATH="${brew_dir}/sbin:${PATH}"
+if [ -d "${HOMEBREW_PREFIX}/sbin" ]; then
+    export PATH="${HOMEBREW_PREFIX}/sbin:${PATH}"
 fi
 
 # Put Brew's Python2 on the path if it's installed
-if [ -d "${brew_dir}/opt/python@2/libexec/bin" ]; then
-    export PATH="${brew_dir}/opt/python/libexec/bin:$PATH"
+if [ -d "${HOMEBREW_PREFIX}/opt/python@2/libexec/bin" ]; then
+    export PATH="${HOMEBREW_PREFIX}/opt/python/libexec/bin:$PATH"
 fi
 
 ## Use homebrew's virtualenvwrapper
-if [ -f "${brew_dir}/bin/virtualenvwrapper.sh" ]; then
+if [ -f "${HOMEBREW_PREFIX}/bin/virtualenvwrapper.sh" ]; then
     export WORKON_HOME="${HOME}/py_venvs"
     #shellcheck source=/dev/null
-    source "${brew_dir}/bin/virtualenvwrapper.sh"
+    source "${HOMEBREW_PREFIX}/bin/virtualenvwrapper.sh"
 fi
 
-
 ## Put brew's Qt on the path, if it's installed
-
-if [ -d "${brew_dir}/opt/qt/bin" ]; then
-    export PATH="${brew_dir}/opt/qt/bin:$PATH"
+if [ -d "${HOMEBREW_PREFIX}/opt/qt/bin" ]; then
+    export PATH="${HOMEBREW_PREFIX}/opt/qt/bin:$PATH"
 fi
 
 ## Use janky local dir on Darwin
