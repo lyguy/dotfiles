@@ -38,6 +38,6 @@ if [ "$(uname)" == "Darwin" ]; then
 fi
 
 ## Set Liquibase Path
-if [ -d "/usr/local/opt/liquibase/libexec" ]; then
-    export LIQUIBASE_HOME="/usr/local/opt/liquibase/libexec"
+if [ -d "${HOMEBREW_PREFIX}/opt/liquibase/libexec" ]; then
+    export LIQUIBASE_HOME="${HOMEBREW_PREFIX}/opt/liquibase/libexec"
 fi

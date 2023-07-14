@@ -41,7 +41,13 @@ if [ -f "${file}" ]; then
 fi
 
 # PG 11
-dir="/usr/local/opt/postgresql@11/bin"
+pg_version=14
+dir="${HOMEBREW_PREFIX}/opt/postgresql@${pg_version}/bin"
+if [ -d "${dir}" ]; then
+    export PATH="${dir}:$PATH"
+fi
+# Alternatively
+dir="/Applications/Postgres.app/Contents/Versions/${pg_version}/bin/"
 if [ -d "${dir}" ]; then
     export PATH="${dir}:$PATH"
 fi
@@ -50,4 +56,11 @@ fi
 dir="${HOME}/.emacs.d/bin"
 if [[ -d "${dir}" ]]; then
     export PATH="${dir}:${PATH}"
+fi
+
+# ASDF
+file="${HOMEBREW_PREFIX}/opt/asdf/libexec/asdf.sh"
+if [ -f "${file}" ]; then
+    #shellcheck source=/dev/null
+    source "${file}"
 fi
