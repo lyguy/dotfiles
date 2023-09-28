@@ -36,7 +36,7 @@ shopt -s nocaseglob
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Load the shell dot-files
-for file in ~/.{aliases,bash_prompt,exports,extras,path,"fzf.bash"}; do
+for file in ~/.{aliases,bash_prompt,exports,extras,path,"fzf.bash",private}; do
     if [[ -r "$file" ]] && [[ -f "$file" ]]; then
         #shellcheck source=/dev/null
         source "$file"
