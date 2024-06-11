@@ -28,3 +28,6 @@ path = "~/.gitconfig.local"
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+
+[github]
+	user = lyman-oi

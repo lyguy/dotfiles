@@ -14,3 +14,5 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help:pass:pass *";
 export ERL_AFLAGS="-kernel shell_history enabled -kernel shell_history_path '\"$HOME/.erlang_history\"'"
 
 export KUBECTL_EXTERNAL_DIFF="dyff between --omit-header --set-exit-code"
+
+export BEETSDIR="/Volumes/Media/beets"

@@ -83,3 +83,7 @@
 ;; Add origami and LSP intagration
 (use-package! lsp-origami)
 (add-hook! 'lsp-after-open-hook #'lsp-origami-try-enable)
+
+(setq auth-sources '("~/.authinfo"))
+
+(setq lsp-elixir-local-server-command "/opt/homebrew/bin/elixir-ls")
