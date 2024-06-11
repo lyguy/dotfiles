@@ -1,8 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 
-# Make emacs the default editor
+# Make vim the default editor
 export EDITOR=vim;
-
 
 # big bash history
 export HISTSIZE=50000000;
