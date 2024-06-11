@@ -1,5 +1,5 @@
 .PHONY: all
-all: dotfiles
+all: dotfiles $(HOME)/.config/nvim
 
 .PHONY: dotfiles ## Installs the dotfiles
 dotfiles: # Installs the dotfiles
@@ -8,9 +8,10 @@ dotfiles: # Installs the dotfiles
 		f=$$(basename $$file); \
 		ln -sfn $$file $(HOME)/$$f; \
 	done; \
-  gpg --list-keys || true; \
-  ln -sfn $(CURDIR)/.gnupg/gpg.conf $(HOME)/.gnupg/gpg.conf;
-	ln -snf $(CURDIR)/.gnupg/gpg-agent.conf $(HOME)/.gnupg/gpg-agent.conf;
+
+$(HOME)/.config/nvim: nvim
+	@echo "$(abspath $<)"	
+	ln -sfn $(abspath $<) $@
 
 .PHONY: test
 test: shellcheck ## Runs all the tests on the file in the repo

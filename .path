@@ -1,20 +1,20 @@
-#!/bin/bash
+#!/bin/sh
 
 # add .local/bin to path
 if [ -d "$HOME/.local/bin" ]; then
-    export PATH=$HOME/.local/bin:$PATH
+    export PATH="$HOME/.local/bin:$PATH"
 fi
 
 # Set up OPAM
 if [ -f "$HOME/.opam/opam-init/init.sh" ]; then
     #shellcheck source=/dev/null
-    source "$HOME/.opam/opam-init/init.sh" > /dev/null 2> /dev/null || true
+    . "$HOME/.opam/opam-init/init.sh" > /dev/null 2> /dev/null || true
     eval "$(opam config env)"
 fi
 
 # Rust cargo bins
 if [ -d "$HOME/.cargo/bin/" ]; then
-    export PATH=$HOME/.cargo/bin:$PATH
+    export PATH="$HOME/.cargo/bin:$PATH"
     RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
     export RUST_SRC_PATH
 fi
@@ -27,17 +27,17 @@ fi
 
 # Google Cloud
 # The next line updates PATH for the Google Cloud SDK.
-file="${HOME}/google-cloud-sdk/path.bash.inc"
+file="${HOME}/google-cloud-sdk/path.${SHELL}.inc"
 if [ -f "${file}" ]; then
     #shellcheck source=/dev/null
-    source "${file}"
+    . "${file}"
 fi
 
 # The next line enables shell command completion for gcloud.
-file="${HOME}/google-cloud-sdk/completion.bash.inc"
+file="${HOME}/google-cloud-sdk/completion.${SHELL}.inc"
 if [ -f "${file}" ]; then
     #shellcheck source=/dev/null
-    source "${file}"
+    . "${file}"
 fi
 
 # PG 11
@@ -54,7 +54,7 @@ fi
 
 # Emacs
 dir="${HOME}/.emacs.d/bin"
-if [[ -d "${dir}" ]]; then
+if [ -d "${dir}" ]; then
     export PATH="${dir}:${PATH}"
 fi
 
@@ -62,7 +62,7 @@ fi
 file="${HOMEBREW_PREFIX}/opt/asdf/libexec/asdf.sh"
 if [ -f "${file}" ]; then
     #shellcheck source=/dev/null
-    source "${file}"
+    . "${file}"
 fi
 
 # PyEnc
