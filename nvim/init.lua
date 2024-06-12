@@ -78,19 +78,6 @@ local plugins = {
       { "-", "<cmd>NvimTreeToggle<cr>", desc = "Open parent directory" },
     },
   },
-
-  -- NeoGit, becasue I cant live without Magit
-  {
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim",  -- required
-      "sindrets/diffview.nvim", -- optional - Diff integration
-
-      -- Only one of these is needed, not both.
-      "ibhagwan/fzf-lua", -- optional
-    },
-    config = true
-  },
   {
     -- See :help gruvbox-material.txt
     'sainnhe/gruvbox-material',

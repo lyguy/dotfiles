@@ -71,5 +71,18 @@ return {
       -- visual mode
       map('v', '<leader>ts', '<cmd>ToggleTermSendVisualLines<cr>', { desc = 'send region to terminal' })
     end,
-  }
+  },
+  -- NeoGit, becasue I cant live without Magit
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",  -- required
+      "sindrets/diffview.nvim", -- optional - Diff integration
+
+      -- Only one of these is needed, not both.
+      -- "ibhagwan/fzf-lua", -- optional
+      "nvim-telescope/telescope.nvim", -- optional
+    },
+    config = true
+  },
 }
