@@ -48,11 +48,11 @@ return {
         javascript = { { "prettierd", "prettier" }, { "eslint_d", "eslint" } },
         typescript = { { "prettierd", "prettier" }, { "eslint_d", "eslint" } },
       },
-      format_on_save = {
-        -- These options will be passed to conform.format()
-        timeout_ms = 500,
-        lsp_fallback = true,
-      },
+      -- format_on_save = {
+      --   -- These options will be passed to conform.format()
+      --   timeout_ms = 500,
+      --   lsp_fallback = true,
+      -- },
     },
   },
   {
@@ -63,13 +63,13 @@ return {
       }
 
       local function map(mode, l, r, opts)
-          opts = opts or {}
-          opts.buffer = bufnr
-          vim.keymap.set(mode, l, r, opts)
-        end
+        opts = opts or {}
+        opts.buffer = bufnr
+        vim.keymap.set(mode, l, r, opts)
+      end
       -- Actions
       -- visual mode
-      map('v', '<leader>ts', '<cmd>ToggleTermSendVisualSelection<cr>', {desc = 'send region to terminal'})
+      map('v', '<leader>ts', '<cmd>ToggleTermSendVisualLines<cr>', { desc = 'send region to terminal' })
     end,
   }
 }
