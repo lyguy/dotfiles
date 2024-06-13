@@ -89,6 +89,9 @@ return {
     keys = {
       { "<leader>gg", "<cmd>Neogit<cr>",    silent = true, desc = "Open neogit" },
     },
-
   },
+  { 
+    "lewis6991/gitsigns.nvim",
+    config = true,
+  }
 }
