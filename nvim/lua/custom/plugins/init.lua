@@ -12,7 +12,7 @@ return {
         endfunction
 
         let g:test#custom_strategies = {'bufferterm': function('BufferTermStrategy')}
-        let g:test#strategy = 'bufferterm'
+        let g:test#strategy = 'terminal'
       ]])
     end,
     keys = {
@@ -58,7 +58,7 @@ return {
   {
     "akinsho/toggleterm.nvim",
     config = function()
-      require("toggleterm").setup() 
+      require("toggleterm").setup()
       -- {
       --   open_mapping = [[<leader>to]]
       -- }
@@ -71,7 +71,7 @@ return {
       -- Actions
       -- visual mode
       map('v', '<leader>ts', '<cmd>ToggleTermSendVisualLines<cr>', { desc = 'send region to terminal' })
-      map('n', '<leader>to',  '<cmd>ToggleTerm<cr>',  { desc = 'open terminal' })
+      map('n', '<leader>to', '<cmd>ToggleTerm<cr>', { desc = 'open terminal' })
     end,
   },
   -- NeoGit, becasue I cant live without Magit
@@ -87,11 +87,18 @@ return {
     },
     config = true,
     keys = {
-      { "<leader>gg", "<cmd>Neogit<cr>",    silent = true, desc = "Open neogit" },
+      { "<leader>gg", "<cmd>Neogit<cr>", silent = true, desc = "Open neogit" },
     },
   },
-  { 
+  {
     "lewis6991/gitsigns.nvim",
     config = true,
+  },
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = true
+    -- use opts = {} for passing setup options
+    -- this is equalent to setup({}) function
   }
 }

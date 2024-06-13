@@ -68,17 +68,20 @@ local plugins = {
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',  opts = {} },
 
-  "nvim-tree/nvim-web-devicons",
   {
-    "nvim-tree/nvim-tree.lua",
-    config = function()
-      require('nvim-tree').setup()
-    end,
-    keys = {
-      { "-", "<cmd>NvimTreeToggle<cr>", desc = "Open parent directory" },
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
+    keys = {
+      { "-", "<cmd>Neotree<cr>", desc = "Open parent directory" },
+    }
   },
-{
+  {
     -- See :help everforest.txt
     'sainnhe/everforest',
     lazy = false,
