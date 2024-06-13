@@ -1,8 +1,8 @@
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
--- vim.g.mapleader = ' '
--- vim.g.maplocalleader = ' '
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 --- ---------------------------------------------------------------------------
 --- Install `lazy.nvim` for plugin managment
@@ -78,6 +78,20 @@ local plugins = {
       { "-", "<cmd>NvimTreeToggle<cr>", desc = "Open parent directory" },
     },
   },
+{
+    -- See :help everforest.txt
+    'sainnhe/everforest',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- Optionally configure and load the colorscheme
+      -- directly inside the plugin declaration.
+      vim.g.everforest_enable_italic = true
+      vim.g.everforest_material_background = 'medium'
+      vim.cmd.colorscheme('everforest')
+      vim.o.background = 'dark'
+    end
+  },
   {
     -- See :help gruvbox-material.txt
     'sainnhe/gruvbox-material',
@@ -88,11 +102,11 @@ local plugins = {
       -- directly inside the plugin declaration.
       vim.g.gruvbox_material_enable_italic = true
       vim.g.gruvbox_material_foreground = 'material'
-      vim.g.gruvbox_material_background = 'soft'
+      vim.g.gruvbox_material_background = 'medium'
       vim.cmd.colorscheme('gruvbox-material')
+      vim.o.background = 'light'
     end
   },
-
   -- Status Bar
   {
     'nvim-lualine/lualine.nvim',
@@ -100,9 +114,9 @@ local plugins = {
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'gruvbox-material',
-        component_separators = { left = '|', right = '|' },
-        section_separators = '',
+        theme = 'auto',
+        section_separators = { left = '', right = '' },
+        component_separators = { left = '', right = '' }
       },
       tabline = {
         lualine_a = { 'buffers' },
@@ -208,7 +222,7 @@ vim.o.timeoutlen = 300
 vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
--- vim.o.termguicolors = true
+vim.o.termguicolors = true
 --
 
 --- ---------------------------------------------------------------------------
@@ -253,7 +267,7 @@ vim.keymap.set('n', 'gJ', '<cmd>join<cr>', { silent = true })
 vim.keymap.set('n', '<c-x><c-k>', '<cmd>bd<cr>', { silent = true })
 
 -- I prefer cursor in the center
-vim.o.scrolloff = 999
+-- vim.o.scrolloff = 999
 
 --- ---------------------------------------------------------------------------
 --- Highlight on yank
@@ -482,10 +496,9 @@ end
 
 -- document existing key chains
 require('which-key').register {
-  ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+  -- ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
   ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-  ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-  ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
+  ['<leader>g'] = { name = '[g]it', _ = 'which_key_ignore' },
   ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
   ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
   ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
