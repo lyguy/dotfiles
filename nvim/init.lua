@@ -20,7 +20,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
 --- ---------------------------------------------------------------------------
 --- Plugins
 --- ---------------------------------------------------------------------------
@@ -81,35 +80,6 @@ local plugins = {
       { "-", "<cmd>Neotree<cr>", desc = "Open parent directory" },
     }
   },
-  {
-    -- See :help everforest.txt
-    'sainnhe/everforest',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      -- Optionally configure and load the colorscheme
-      -- directly inside the plugin declaration.
-      vim.g.everforest_enable_italic = true
-      vim.g.everforest_material_background = 'medium'
-      vim.cmd.colorscheme('everforest')
-      vim.o.background = 'dark'
-    end
-  },
-  -- {
-  --   -- See :help gruvbox-material.txt
-  --   'sainnhe/gruvbox-material',
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     -- Optionally configure and load the colorscheme
-  --     -- directly inside the plugin declaration.
-  --     vim.g.gruvbox_material_enable_italic = true
-  --     vim.g.gruvbox_material_foreground = 'material'
-  --     vim.g.gruvbox_material_background = 'medium'
-  --     vim.cmd.colorscheme('gruvbox-material')
-  --     vim.o.background = 'light'
-  --   end
-  -- },
   -- Status Bar
   {
     'nvim-lualine/lualine.nvim',
@@ -133,7 +103,7 @@ local plugins = {
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
     main = 'ibl',
-    opts = {},
+    opts = {enabled = false},
   },
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
@@ -165,6 +135,10 @@ local plugins = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
     build = ':TSUpdate',
+  },
+  {
+    -- onedarkpro coloc scheme
+    'olimorris/onedarkpro.nvim',
   },
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -226,6 +200,7 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+vim.cmd.colorscheme('desert')
 --
 
 --- ---------------------------------------------------------------------------
@@ -532,11 +507,13 @@ require('mason-lspconfig').setup()
 local servers = {
   -- clangd = {},
   -- gopls = {},
-  -- pyright = {},
+  pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
-  elixirls = {},
+  lexical = {
+    filetypes = { "elixir", "eelixir", "heex" }
+  },
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },

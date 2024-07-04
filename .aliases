@@ -32,3 +32,5 @@ if [ "$(uname)" == "Darwin" ]; then
         mandoc -T pdf "$(/usr/bin/man -w $@)" | open -fa Preview
     }
 fi
+
+alias exrepl="iex -S mix run --no-start"

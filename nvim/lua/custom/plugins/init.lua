@@ -12,7 +12,8 @@ return {
         endfunction
 
         let g:test#custom_strategies = {'bufferterm': function('BufferTermStrategy')}
-        let g:test#strategy = 'terminal'
+        let g:test#strategy = 'neovim'
+        let test#elixir#exunit#executable = 'mix test'
       ]])
     end,
     keys = {
