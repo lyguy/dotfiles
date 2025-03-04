@@ -5,3 +5,5 @@ vim.g.autoformat = false
 
 local opt = vim.opt
 opt.relativenumber = false
+
+vim.g.lazyvim_picker = "fzf"

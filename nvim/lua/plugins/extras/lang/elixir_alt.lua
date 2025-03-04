@@ -10,6 +10,9 @@ return {
     opts = {
       servers = {
         lexical = {
+           codeLens = {
+              enable = true,
+            },
           keys = {
             {
               "<leader>cp",
